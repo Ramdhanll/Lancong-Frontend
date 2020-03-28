@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="container">
-      <nav class=" navbar navbar-expand-lg navbar-light bg-white">
-        <a class="navbar-brand" href="#">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand mt-1" href="#">
           <img src="images/logo.png" alt="" />
         </a>
         <button
@@ -15,8 +15,8 @@
         </button>
 
         <!-- Menu -->
-        <div class="collapse navbar-collapse " id="navb">
-          <ul class="navbar-nav ml-auto mr-3 aaa">
+        <div class="collapse navbar-collapse" id="navb">
+          <ul class="navbar-nav ml-auto  aaa navbar-light bg-white mt-3">
             <li class="nav-item mx-md-2">
               <a class="nav-link active" href="#">Home</a>
             </li>
@@ -42,7 +42,6 @@
               <a class="nav-link" href="#">Testimonial</a>
             </li>
           </ul>
- 
           <!-- Mobile button -->
           <form class="form-inline d-sm-block d-md-none">
             <button class="btn btn-login my-2 my-sm-0">

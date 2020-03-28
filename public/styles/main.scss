@@ -5,6 +5,14 @@ body {
 }
 
 // Navbar 
+.navbar {
+  @media (min-device-height: 667px) and (max-device-width: 375px) {
+    margin-top: -60px;
+  }
+
+  margin-top: -77px;
+
+}
 .navbar-brand {
   img {
     max-height: 40px;
@@ -18,13 +26,14 @@ body {
 
   height: 70px;
   border-radius: 0;
+
 }
 
 .navbar-light {
   .navbar-nav {
     .nav-link {
       color: #071C4D;
-
+      text-align: left;
       &.active {
         font-weight: bold;
         color: #071C4D !important;
@@ -34,9 +43,16 @@ body {
 }
 
 .btn-login {
-  background-color: #071C4D;
-  color: #fff;
+  background-color: #071C4D !important;
+  color: #fff !important;
+  position: relative;
 
+  @media (min-width: 1281px) {  
+    top: 8px;
+  }
+  @media (min-width: 768px) and (max-width: 1280px) {
+    top: 9px;
+  }
   &:hover {
     color: #fff;
   }
@@ -85,12 +101,18 @@ header {
   }
 
   h2 {
+    @media (min-device-height: 667px) and (max-device-width: 375px) {
+      font-size: 15px;
+    }
     font-size: 30px;
     margin-bottom: 0;
 
   }
 
   p {
+    @media (min-device-height: 667px) and (max-device-width: 375px) {
+      font-size: 10px;
+    }
     font-size: 20px;
     font-weight: lighter;
   }

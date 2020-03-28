@@ -2,11 +2,16 @@ body {
   background-color: #fff;
   font-family: 'Assistant', sans-serif;
   color: #071C4D;
-  margin-top:-61px !important;
 }
 
 .navbar {
-  height: 66px;
+  margin-top: -77px;
+}
+
+@media (min-device-height: 667px) and (max-device-width: 375px) {
+  .navbar {
+    margin-top: -60px;
+  }
 }
 
 .navbar-brand img {
@@ -14,7 +19,7 @@ body {
 }
 
 .btn-navbar-right {
-  margin-top: -5px !important;
+  margin-top: -10px !important;
   margin-bottom: -8px !important;
   margin-right: -18px !important;
   height: 70px;
@@ -23,6 +28,7 @@ body {
 
 .navbar-light .navbar-nav .nav-link {
   color: #071C4D;
+  text-align: left;
 }
 
 .navbar-light .navbar-nav .nav-link.active {
@@ -31,13 +37,24 @@ body {
 }
 
 .btn-login {
-  background-color:#071C4D !important;
+  background-color: #071C4D !important;
   color: #fff !important;
+  position: relative;
+}
+
+@media (min-width: 1281px) {
+  .btn-login {
+    top: 8px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  .btn-login {
+    top: 9px;
+  }
 }
 
 .btn-login:hover {
-  background-color:rgb(14, 45, 117) !important;
-
   color: #fff;
 }
 
@@ -87,9 +104,21 @@ header .btn-get-started:hover {
   margin-bottom: 0;
 }
 
+@media (min-device-height: 667px) and (max-device-width: 375px) {
+  .section-stats h2 {
+    font-size: 15px;
+  }
+}
+
 .section-stats p {
   font-size: 20px;
   font-weight: lighter;
+}
+
+@media (min-device-height: 667px) and (max-device-width: 375px) {
+  .section-stats p {
+    font-size: 10px;
+  }
 }
 
 .section-popular {
