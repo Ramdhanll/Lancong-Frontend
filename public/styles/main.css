@@ -282,6 +282,7 @@ header .btn-get-started:hover {
 .section-details-content .card-details {
   padding: 30px;
   border-radius: 11px;
+  text-align: left !important;
 }
 
 .section-details-content .card-details .trip-informations th {
