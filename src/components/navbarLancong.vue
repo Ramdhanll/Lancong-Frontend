@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="navbarLancong">
     <!-- Navbar -->
     <div class="container">
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
@@ -57,7 +57,7 @@
 
 <script>
 export default {
-  name: 'header',
+  name: 'navbarLancong',
 }
 </script>
 

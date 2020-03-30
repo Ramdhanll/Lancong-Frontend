@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footeLancong">
        <footer class="section-footer mt-5 mb-4 border-top">
       <div class="container pt-5 pb-5">
         <div class="row justify-content-center">
@@ -70,7 +70,7 @@
 
 <script>
 export default {
-  name: 'footer',
+  name: 'footerLancong',
 }
 </script>
 
