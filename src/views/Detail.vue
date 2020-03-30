@@ -131,9 +131,15 @@ import footerLancong from '../components/footerLancong'
 export default {
   name:'detail',
   components: {
-    navbarLancong,
-    footerLancong
-  }
+      navbarLancong,
+      footerLancong
+  },
+  created() {
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'libraries/xzoom/dist/xzoom.min.js')
+      recaptchaScript.async = true
+      document.head.appendChild(recaptchaScript)
+    },
 }
 </script>
 <style>
