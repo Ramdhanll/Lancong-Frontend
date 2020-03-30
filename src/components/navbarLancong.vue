@@ -3,9 +3,9 @@
     <!-- Navbar -->
     <div class="container">
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
-            <a href="#" class="navbar-brand">
+            <router-link :to="{name: 'home'}" class="navbar-brand">
                 <img src="images/Logo Erdev.png" alt="Logo Erdev">
-            </a>
+            </router-link>
             <button class="navbar-toggler navbar-toggler-right"
             type="button"
             data-toggle="collapse"

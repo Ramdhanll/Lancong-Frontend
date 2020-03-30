@@ -2,19 +2,21 @@
   <div id="app">
     <navbarLancong/>
     <header class="text-center">
-      <h1 data-aos="fade-in" data-aos-duration="2000" class="animated fadeInDown slow">
+      <div class="first" data-aos="fade-down" data-aos-duration="2000"> 
+        <h1 data-aos="fade-down" data-aos-duration="1000" class="animated fadeInDown slow" data-aos-delay="500">
         Explore The Beautiful World
         <br />
         As Easy One Click
       </h1>
-      <p class="mt-3 animated fadeInDown slower">
+      <p data-aos="zoom-in" data-aos-duration="1000" class="mt-3 animated fadeInDown slower" data-aos-delay="1000">
         You will see beautiful
         <br />
         moment you never see before
       </p>
-      <a href="#" class="btn btn-get-started px-4 mt-4">
+      <a href="#" class="btn btn-get-started btn-first px-4 mt-4"  data-aos-mirror="true">
         Get Started
       </a>
+      </div>
     </header>
     <main>
       <div class="container">
@@ -40,8 +42,8 @@
       <section class="section-popular" id="popular">
         <div class="container">
           <div class="row">
-            <div class="col text-center section-popular-heading">
-              <h2 data-aos="fade-in" data-aos-duration="2000">Wisata Popular</h2>
+            <div data-aos="fade-down" data-aos-duration="2000" class="col text-center section-popular-heading">
+              <h2>Wisata Popular</h2>
               <p>
                 Something that you never try
                 <br />
@@ -149,7 +151,7 @@
           <div
             class="section-popular-travel row justify-content-center match-height"
           >
-            <div class="col-sm-6 col-md-6 col-lg-4">
+            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4">
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content">
                   <img
@@ -167,7 +169,7 @@
                 <p class="trip-to mt-2">Trip to Ubud</p>
               </div>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-4">
+            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4">
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content">
                   <img
@@ -185,7 +187,7 @@
                 <p class="trip-to mt-2">Trip to Nusa Penida</p>
               </div>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-4">
+            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4">
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content mb-auto">
                   <img
@@ -234,6 +236,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

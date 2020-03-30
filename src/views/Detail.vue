@@ -82,7 +82,7 @@
                   </div>
                   <div class="col-lg-4">
                       <div class="card card-details card-right">
-                          <h2>Member keberangkatan</h2>
+                          <h2>Members who going</h2>
                           <div class="members my-2">
                               <img src="images/member1.png" alt="Members" class="rounded-circle member-image mr-1">
                               <img src="images/member2.png" alt="Members" class="rounded-circle member-image mr-1">
@@ -94,25 +94,25 @@
                           <h2>Trip Informasi</h2>
                           <table class="trip-informations">
                               <tr>
-                                  <th width="50%">Keberangkatan</th>
+                                  <th width="50%">Departure</th>
                                   <td width="50%" class="text-right">22 Aug, 2019</td>
                               </tr>
                               <tr>
-                                  <th width="50%">Durasi</th>
+                                  <th width="50%">Duration</th>
                                   <td width="50%" class="text-right">4D 3N</td>
                               </tr>
                               <tr>
-                                  <th width="50%">Tipe</th>
+                                  <th width="50%">Type</th>
                                   <td width="50%" class="text-right">Open Trip</td>
                               </tr>
                               <tr>
-                                  <th width="50%">Harga</th>
+                                  <th width="50%">Price</th>
                                   <td width="50%" class="text-right">$ 80,00 / Person</td>
                               </tr>
                           </table>
                       </div>
                       <div class="join-container">
-                          <a href="checkout.html" class="btn btn-block btn-join-now mt-3 py-2 bg-warning">Join Now</a>
+                          <router-link :to="{name: 'checkout'}" class="btn btn-block btn-join-now mt-3 py-2 bg-warning">Join Now</router-link>
                       </div>
                   </div>
               </div>
@@ -132,8 +132,8 @@ import footerLancong from '../components/footerLancong'
 export default {
   name:'detail',
   components: {
-      navbarLancong,
-      footerLancong
+    navbarLancong,
+    footerLancong
   },
   // mounted () {
   //     // let recaptchaScript = document.createElement('script')
