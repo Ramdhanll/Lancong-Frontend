@@ -3,7 +3,7 @@
     <!-- Navbar -->
     <div class="container">
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
-            <router-link :to="{name: 'home'}" class="navbar-brand">
+            <router-link :to="{name: 'Home'}" class="navbar-brand mt-3">
                 <img src="images/Logo Erdev.png" alt="Logo Erdev">
             </router-link>
             <button class="navbar-toggler navbar-toggler-right"
@@ -15,7 +15,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navb">
-                <ul class="navbar-nav ml-auto mr-3">
+                <ul class="navbar-nav ml-auto mr-3 mt-3">
                     <li class="nav-item mx-md-2">
                         <a href="#" class="nav-link active">Home</a>
                     </li>
@@ -37,17 +37,27 @@
 
                     <!-- Mobile Button -->
                     <form class="form-inline d-sm-block d-md-none">
-                        <button class="btn btn-login my-2 my-sm-0">
-                            Masuk
-                        </button>
+                        <router-link v-if="!loggedIn" :to="{name: 'Login'}">
+                            <button class="btn btn-login my-2 my-sm-0">
+                                Masuk
+                            </button>
+                        </router-link>
+                        <router-link v-if="loggedIn" :to="{name: 'Logout'}">
+                            <button class="btn btn-login my-2 my-sm-0">
+                                Logout
+                            </button>
+                        </router-link>
                     </form>
 
                     <!-- Dekstop Button -->
-                    <form class="form-inline my-2 my-lg-0 d-none d-md-block">
+                        <router-link v-if="!loggedIn" :to="{name: 'Login'}">
                             <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
-                                Masuk
+                                <span class="mt-2">Masuk</span>
                             </button>
-                    </form>
+                        </router-link>
+                            <button v-if="loggedIn" @click="logout" class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
+                                <span class="mt-2">Logout</span>
+                            </button>
 
             </div>
         </nav>
@@ -57,7 +67,22 @@
 
 <script>
 export default {
-  name: 'navbarLancong',
+    name: 'navbarLancong',
+    computed: {
+        loggedIn() {
+            return this.$store.getters.loggedIn;
+        }
+    },
+    methods: {
+        logout(){
+            this.$store.dispatch('destroyToken')
+                .then(() => {
+                    this.$router.push({name: 'Login'})
+                })
+                .catch(e => console.log(e));
+        }
+    },
+    
 }
 </script>
 

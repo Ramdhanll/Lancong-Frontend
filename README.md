@@ -1,4 +1,4 @@
-# lancong-frontend
+# lancong
 
 ## Project setup
 ```

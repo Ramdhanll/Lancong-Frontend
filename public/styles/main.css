@@ -2,6 +2,7 @@ body {
   background-color: #fff;
   font-family: 'Assistant', sans-serif;
   color: #071C4D;
+  margin-top: -25px !important;
 }
 
 .navbar {
@@ -61,8 +62,9 @@ body {
 header {
   margin-top: -68px;
   padding: 180px 0 165px;
-  background-image: url("../images/header-background.jpg");
+  background-image: url("../images/header-background@2x.jpg");
   background-size: cover;
+  
 }
 
 header h1,

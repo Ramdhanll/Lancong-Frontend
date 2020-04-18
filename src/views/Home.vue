@@ -8,7 +8,7 @@
         <br />
         As Easy One Click
       </h1>
-      <p data-aos="zoom-in" data-aos-duration="1000" class="mt-3 animated fadeInDown slower" data-aos-delay="1000">
+      <p>
         You will see beautiful
         <br />
         moment you never see before
@@ -55,7 +55,7 @@
       </section>
       <section class="section-popular-content" id="popularContent">
         <div class="container">
-          <div data-aos="fade-up" data-aos-duration="2000" class="section-popular-travel row justify-content-center">
+          <div data-aos="fade-up" data-aos-duration="1000" class="section-popular-travel row justify-content-center">
             <div class="col-sm-6 col-md-4 col-lg-3">
               <div
                 class="card-travel text-center d-flex flex-column"
@@ -64,7 +64,7 @@
                 <div class="travel-country">INDONESIA</div>
                 <div class="travel-location">DERATAN, BALI</div>
                 <div class="travel-button mt-auto">
-                  <router-link :to="{name: 'detail'}" class="btn btn-travel-details px-4">
+                  <router-link :to="{name: 'Detail'}" class="btn btn-travel-details px-4">
                     View Details
                   </router-link>
                 </div>
@@ -233,6 +233,7 @@ export default {
     navbarLancong,
     footerLancong
   }
+  
 }
 </script>
 
