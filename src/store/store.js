@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
     retriveToken(context, credentials) {
       return new Promise((resolve, reject) => {
         axios.post('/login',{
-          username: credentials.username,
+          email: credentials.email,
           password: credentials.password
         })
         .then((response) => {
@@ -68,8 +68,19 @@ export const store = new Vuex.Store({
         .then((response) => {
           context.commit('getUser', response.data)
         })
+    },
+    register(context, data) {
+      return new Promise((resolve, reject) => {
+        axios.post('/register', data)
+          .then((response) => {
+            console.log(response);
+            resolve(response);
+          })
+          .catch((e) => {
+            reject(e);
+          })
+      })
     }
-
 
   }
 })

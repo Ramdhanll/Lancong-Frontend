@@ -3,6 +3,7 @@ import Detail from './views/Detail'
 import Checkout from './views/Checkout'
 import Success from './views/Success'
 import Login from './views/Login'
+import Register from './views/Register'
 import Logout from './views/Logout'
 
 const routes = [
@@ -15,6 +16,13 @@ const routes = [
     path: '/login',
     component: Login,
     name: 'Login',
+    meta : {requiresVisitor: true}
+
+  },
+  { 
+    path: '/register',
+    component: Register,
+    name: 'Register',
     meta : {requiresVisitor: true}
 
   },

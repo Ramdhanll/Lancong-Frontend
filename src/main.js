@@ -5,6 +5,8 @@ import routes from './routes'
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 import {store} from './store/store'
+import VueProgressBar from 'vue-progressbar'
+import Swal from 'sweetalert2'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -42,6 +44,36 @@ router.beforeEach((to, from, next) => {
     next() // make sure to always call next()!
   }
 })
+
+const options = {
+  color: '#bffaf3',
+  failedColor: '#874b4b',
+  thickness: '3px',
+  transition: {
+    speed: '0.2s',
+    opacity: '0.6s',
+    termination: 300
+  },
+  autoRevert: true,
+  location: 'top',
+  inverse: false
+}
+
+Vue.use(VueProgressBar, options)
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Vue.prototype.$Toast = Toast;
 
 new Vue({
   created() {

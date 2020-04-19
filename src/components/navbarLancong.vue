@@ -75,11 +75,15 @@ export default {
     },
     methods: {
         logout(){
+            this.$Progress.start();
             this.$store.dispatch('destroyToken')
                 .then(() => {
+                    this.$Progress.finish();
                     this.$router.push({name: 'Login'})
                 })
-                .catch(e => console.log(e));
+                .catch(() => {
+                    this.$Progress.fail();
+                });
         }
     },
     
