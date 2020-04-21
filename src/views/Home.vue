@@ -56,62 +56,21 @@
       <section class="section-popular-content" id="popularContent">
         <div class="container">
           <div data-aos="fade-up" data-aos-duration="1000" class="section-popular-travel row justify-content-center">
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="col-sm-6 col-md-4 col-lg-3" v-for="(popular, index) in this.$store.state.popular" :key="index">
               <div
                 class="card-travel text-center d-flex flex-column"
-                style="background-image: url('images/travel-1.jpg');"
+                v-bind:style="{ backgroundImage: 'url(http://api.lancong.test/images/galleries/' + popular.galleries[0].image + ')' }"
               >
-                <div class="travel-country">INDONESIA</div>
-                <div class="travel-location">DERATAN, BALI</div>
+                <div class="travel-country">{{ popular.location }}</div>
+                <div class="travel-location">{{ popular.title }}</div>
                 <div class="travel-button mt-auto">
-                  <router-link :to="{name: 'Detail'}" class="btn btn-travel-details px-4">
+                  <router-link :to=" '/detail/' + popular.slug" class="btn btn-travel-details px-4">
                     View Details
                   </router-link>
                 </div>
               </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div
-                class="card-travel text-center d-flex flex-column"
-                style="background-image: url('images/travel-2.jpg');"
-              >
-                <div class="travel-country">INDONESIA</div>
-                <div class="travel-location">BROMO, MALANG</div>
-                <div class="travel-button mt-auto">
-                  <a href="details.html" class="btn btn-travel-details px-4">
-                    View Details
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div
-                class="card-travel text-center d-flex flex-column"
-                style="background-image: url('images/travel-3.jpg');"
-              >
-                <div class="travel-country">INDONESIA</div>
-                <div class="travel-location">NUSA PENIDA</div>
-                <div class="travel-button mt-auto">
-                  <a href="details.html" class="btn btn-travel-details px-4">
-                    View Details
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div
-                class="card-travel text-center d-flex flex-column"
-                style="background-image: url('images/travel-4.jpg');"
-              >
-                <div class="travel-country">INDONESIA</div>
-                <div class="travel-location">DUBAI</div>
-                <div class="travel-button mt-auto">
-                  <a href="details.html" class="btn btn-travel-details px-4">
-                    View Details
-                  </a>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -232,11 +191,24 @@ export default {
   components: {
     navbarLancong,
     footerLancong
-  }
+  },
+  data() {
+    return {
+    }
+  },
+  computed: {
+    
+  },
+  mounted() {
+    this.$store.dispatch('getPopular')
+      .then(response => {
+        console.log(response);
+      });
+
+  },
   
 }
 </script>
 
 <style scoped>
-
 </style>

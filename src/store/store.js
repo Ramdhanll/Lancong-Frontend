@@ -8,11 +8,16 @@ axios.defaults.baseURL = 'http://api.lancong.test/api'
 export const store = new Vuex.Store({
   state: {
     token: localStorage.getItem('access_token') || null,
-    user : []
+    user : [],
+    popular: [],
+    detail : []
   },
   getters: {
     loggedIn(state) {
       return state.token !== null;
+    },
+    getPupolar(state) {
+      return state.popular;
     }
   },
   mutations: {
@@ -25,6 +30,12 @@ export const store = new Vuex.Store({
     },
     getUser(state, data) {
       state.user = data;
+    },
+    getPopular(state, data) {
+      state.popular = data;
+    },
+    getDetail(state, data) {
+      state.detail = data;
     }
   },
   actions: {
@@ -80,6 +91,26 @@ export const store = new Vuex.Store({
             reject(e);
           })
       })
+    },
+    getPopular(context) {
+      axios.get('/getPopular')
+        .then(response => {
+          const data = response.data;
+          context.commit('getPopular', data);
+        })
+        .catch(response => {
+          console.log(response);
+        })
+    },
+    getDetail(context, slug) {
+      axios.get('/getDetail/' + slug.slug)
+        .then(response => {
+          const data = response.data;
+          context.commit('getDetail', data);
+        })
+        .catch(response => {
+          console.log(response);
+        })
     }
 
   }

@@ -4,7 +4,7 @@
     <div class="container">
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
             <router-link :to="{name: 'Home'}" class="navbar-brand mt-3">
-                <img src="images/Logo Erdev.png" alt="Logo Erdev">
+                <img src="/images/Logo Erdev.png" alt="Logo Erdev">
             </router-link>
             <button class="navbar-toggler navbar-toggler-right"
             type="button"

@@ -32,7 +32,7 @@ const routes = [
     name: 'Logout',
   },
   { 
-    path: '/detail',
+    path: '/detail/:id',
     component: Detail,
     name: 'Detail',
     meta : {requiresAuth: true}

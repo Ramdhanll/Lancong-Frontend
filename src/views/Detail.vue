@@ -22,59 +22,41 @@
               <div class="row">
                   <div class="col-lg-8 pl-lg-0">
                       <div class="card card-details">
-                          <h1>Ubud, Bali</h1>
-                          <p>Republic of Indonesia Raya</p>
+                          <h1>{{ this.$store.state.detail.title }}</h1>
+                          <p>{{ this.$store.state.detail.location }}</p>
                           <div class="gallery">
                               <div class="xzoom-container">
-                                  <img src="images/details.jpg" class="xzoom" id="xzoom-default" >
+                                  <img :src="'http://api.lancong.test/images/galleries/' + this.$store.state.detail.galleries[0].image" class="xzoom" id="xzoom-default" >
                               </div>
                               <div class="xzoom-thumbs">
-                                <div class="image">
-                                  <img src="images/details.jpg" width="128">
-                                </div>
-                                <div class="image">
-                                  <img src="images/details.jpg" width="128">
-                                </div>
-                                <div class="image">
-                                  <img src="images/details.jpg" width="128">
-                                </div>
-                                <div class="image">
-                                  <img src="images/details.jpg" width="128">
-                                </div>
-                                <div class="image">
-                                  <img src="images/details.jpg" width="128">
+                                <div class="image" v-for="(image, index) in this.$store.state.detail.galleries" :key="index">
+                                  <img :src="'http://api.lancong.test/images/galleries/' + image.image" width="128">
                                 </div>
                               </div>
                           </div>
                           <h2 class="mt-4" id="about">Tentang Wisata</h2>
-                          <p>Bali is a province of Indonesia and the westernmost of the Lesser Sunda Islands. 
-                                  Located east of Java and west of Lombok, the province includes the island of Bali 
-                                  and a few smaller neighbouring islands, notably Nusa Penida, Nusa Lembongan,
-                                  and Nusa Ceningan. The provincial capital, Denpasar, is the most populous city</p>
-                                  <p>
-                                          Bali is a province of Indonesia and the westernmost of the Lesser Sunda Islands. 
-                                          Located east of Java and west of Lombok.
-                                  </p>
+                          <p>{{ this.$store.state.detail.about }}</p>
+                                  
                           <div class="features row">
                               <div class="col-md-4">
-                                  <img src="images/icon_1.png" alt="" class="features-image">
+                                  <img src="/images/icon_1.png" alt="" class="features-image">
                                   <div class="description">
                                       <h3>Featured Event</h3>
-                                      <p>Tari Kecak</p>
+                                      <p>{{ this.$store.state.detail.featured_event }}</p>
                                   </div>
                               </div>
                               <div class="col-md-4 border-left">
-                                  <img src="images/icon_2.png" alt="" class="features-image">
+                                  <img src="/images/icon_2.png" alt="" class="features-image">
                                   <div class="description">
                                       <h3>Language</h3>
-                                      <p>Bahasa Indonesia</p>
+                                      <p>{{ this.$store.state.detail.language }}</p>
                                   </div>
                               </div>
                               <div class="col-md-4 border-left">
-                                  <img src="images/icon_3.png" alt="" class="features-image">
+                                  <img src="/images/icon_3.png" alt="" class="features-image">
                                   <div class="description">
                                       <h3>Foods</h3>
-                                      <p>Local Foods</p>
+                                      <p>{{ this.$store.state.detail.foods }}</p>
                                   </div>
                               </div>
                           </div>
@@ -84,30 +66,30 @@
                       <div class="card card-details card-right">
                           <h2>Members who going</h2>
                           <div class="members my-2">
-                              <img src="images/member1.png" alt="Members" class="rounded-circle member-image mr-1">
-                              <img src="images/member2.png" alt="Members" class="rounded-circle member-image mr-1">
-                              <img src="images/member3.png" alt="Members" class="rounded-circle member-image mr-1">
-                              <img src="images/member4.png" alt="Members" class="rounded-circle member-image mr-1">
-                              <img src="images/member5.png" alt="Members" class="rounded-circle member-image mr-1">
+                              <img src="/images/member1.png" alt="Members" class="rounded-circle member-image mr-1">
+                              <img src="/images/member2.png" alt="Members" class="rounded-circle member-image mr-1">
+                              <img src="/images/member3.png" alt="Members" class="rounded-circle member-image mr-1">
+                              <img src="/images/member4.png" alt="Members" class="rounded-circle member-image mr-1">
+                              <img src="/images/member5.png" alt="Members" class="rounded-circle member-image mr-1">
                           </div>
                           <hr>
                           <h2>Trip Informasi</h2>
                           <table class="trip-informations">
                               <tr>
                                   <th width="50%">Departure</th>
-                                  <td width="50%" class="text-right">22 Aug, 2019</td>
+                                  <td width="50%" class="text-right">{{ this.$store.state.detail.departure_date }}</td>
                               </tr>
                               <tr>
                                   <th width="50%">Duration</th>
-                                  <td width="50%" class="text-right">4D 3N</td>
+                                  <td width="50%" class="text-right">{{ this.$store.state.detail.duration }}</td>
                               </tr>
                               <tr>
                                   <th width="50%">Type</th>
-                                  <td width="50%" class="text-right">Open Trip</td>
+                                  <td width="50%" class="text-right">{{ this.$store.state.detail.type }}</td>
                               </tr>
                               <tr>
                                   <th width="50%">Price</th>
-                                  <td width="50%" class="text-right">$ 80,00 / Person</td>
+                                  <td width="50%" class="text-right">Rp. {{ this.$store.state.detail.price }}</td>
                               </tr>
                           </table>
                       </div>
@@ -135,22 +117,12 @@ export default {
     navbarLancong,
     footerLancong
   },
-  // mounted () {
-  //     // let recaptchaScript = document.createElement('script')
-  //     // recaptchaScript.setAttribute('src', 'libraries/xzoom/dist/xzoom.min.js')
-  //     // recaptchaScript.async = true
-  //     // document.head.appendChild(recaptchaScript)
+  mounted() {
+    this.$store.dispatch('getDetail', {
+        slug : this.$route.params.id,
+    })
 
-  //     $(document).ready(function () {
-  //       $('.xzoom, .xzoom-gallery').xzoom({
-  //           fadeIn: true,
-  //           zoomWidth: 300,
-  //           zoomHeight: 300,
-  //           title: false,
-  //           tint: '#333'
-  //       });
-  //   });
-  //   }
+}
 }
 </script>
 <style>
