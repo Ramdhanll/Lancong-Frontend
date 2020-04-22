@@ -109,6 +109,8 @@ export const store = new Vuex.Store({
         })
     },
     getDetail(context, slug) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
       return new Promise((resolve, reject) => {
         axios.get('/getDetail/' + slug.slug)
         .then(response => {
@@ -120,7 +122,24 @@ export const store = new Vuex.Store({
           reject('failed');
         })
       })
+    },
+    setTransaction(context, id){
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+      
+      let token = context.state.token;
+      return new Promise((resolve, reject) => {
+        axios.post('/checkout_process/' + token, {
+          id : id,
+        })
+          .then(response => {
+            resolve(response);
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     }
+
 
   }
 })

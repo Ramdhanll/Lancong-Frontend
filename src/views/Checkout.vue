@@ -4,7 +4,7 @@
     <div class="container">
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
             <div class="navbar-nav ml-auto mr-auto mr-sm-auto mr-lg-0 mr-md-auto">
-                <router-link :to="{name: home}" class="navbar-brand">
+                <router-link :to="{name: 'Home'}" class="navbar-brand">
                     <img src="images/Logo Erdev.png" alt="Logo">
                 </router-link>
             </div>

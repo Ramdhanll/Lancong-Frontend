@@ -96,7 +96,9 @@
                           </table>
                       </div>
                       <div class="join-container">
-                          <router-link :to="{name: 'Checkout'}" class="btn btn-block btn-join-now mt-3 py-2 bg-warning">Join Now</router-link>
+                          <button @click="setTransaction(details.id)" class="btn btn-block btn-join-now mt-3 py-2 bg-warning">
+                            Join Now
+                          </button>
                       </div>
                   </div>
               </div>
@@ -128,6 +130,21 @@ export default {
   methods: {
     changeImage(image) {
       this.imageDefault = image;
+    },
+    setTransaction(id) {
+      this.$Progress.start();
+      this.$store.dispatch('setTransaction', {
+        id : id
+      })
+        .then((response) => {
+          console.log(response)
+          this.$Progress.finish();
+          this.$router.push('/checkout');
+        })
+        .catch((e) => {
+          this.$Progress.fail();
+          console.log(e)
+        })
     }
   },
   mounted() {
