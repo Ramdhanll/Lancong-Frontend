@@ -22,41 +22,43 @@
               <div class="row">
                   <div class="col-lg-8 pl-lg-0">
                       <div class="card card-details">
-                          <h1>{{ this.$store.state.detail.title }}</h1>
-                          <p>{{ this.$store.state.detail.location }}</p>
+                          <h1>{{ details.title }}</h1>
+                          <p>{{ details.location }}</p>
                           <div class="gallery">
                               <div class="xzoom-container">
-                                  <img :src="'http://api.lancong.test/images/galleries/' + this.$store.state.detail.galleries[0].image" class="xzoom" id="xzoom-default" >
+                                  <img :src="'http://api.lancong.test/images/galleries/' + imageDefault" class="xzoom" id="xzoom-default" >
                               </div>
                               <div class="xzoom-thumbs">
-                                <div class="image" v-for="(image, index) in this.$store.state.detail.galleries" :key="index">
-                                  <img :src="'http://api.lancong.test/images/galleries/' + image.image" width="128">
+                                <div class="image" v-for="(image, index) in details.galleries" :key="index">
+                                  <img  :src="'http://api.lancong.test/images/galleries/' + image.image" width="128"
+                                  @click="changeImage(image.image)"
+                                  :class="image.image == imageDefault ? 'active-img' : ''">
                                 </div>
                               </div>
                           </div>
                           <h2 class="mt-4" id="about">Tentang Wisata</h2>
-                          <p>{{ this.$store.state.detail.about }}</p>
+                          <p>{{ details.about }}</p>
                                   
                           <div class="features row">
                               <div class="col-md-4">
                                   <img src="/images/icon_1.png" alt="" class="features-image">
                                   <div class="description">
                                       <h3>Featured Event</h3>
-                                      <p>{{ this.$store.state.detail.featured_event }}</p>
+                                      <p>{{ details.featured_event }}</p>
                                   </div>
                               </div>
                               <div class="col-md-4 border-left">
                                   <img src="/images/icon_2.png" alt="" class="features-image">
                                   <div class="description">
                                       <h3>Language</h3>
-                                      <p>{{ this.$store.state.detail.language }}</p>
+                                      <p>{{ details.language }}</p>
                                   </div>
                               </div>
                               <div class="col-md-4 border-left">
                                   <img src="/images/icon_3.png" alt="" class="features-image">
                                   <div class="description">
                                       <h3>Foods</h3>
-                                      <p>{{ this.$store.state.detail.foods }}</p>
+                                      <p>{{ details.foods }}</p>
                                   </div>
                               </div>
                           </div>
@@ -77,24 +79,24 @@
                           <table class="trip-informations">
                               <tr>
                                   <th width="50%">Departure</th>
-                                  <td width="50%" class="text-right">{{ this.$store.state.detail.departure_date }}</td>
+                                  <td width="50%" class="text-right">{{ details.departure_date }}</td>
                               </tr>
                               <tr>
                                   <th width="50%">Duration</th>
-                                  <td width="50%" class="text-right">{{ this.$store.state.detail.duration }}</td>
+                                  <td width="50%" class="text-right">{{ details.duration }}</td>
                               </tr>
                               <tr>
                                   <th width="50%">Type</th>
-                                  <td width="50%" class="text-right">{{ this.$store.state.detail.type }}</td>
+                                  <td width="50%" class="text-right">{{ details.type }}</td>
                               </tr>
                               <tr>
                                   <th width="50%">Price</th>
-                                  <td width="50%" class="text-right">Rp. {{ this.$store.state.detail.price }}</td>
+                                  <td width="50%" class="text-right">Rp. {{ details.price }}</td>
                               </tr>
                           </table>
                       </div>
                       <div class="join-container">
-                          <router-link :to="{name: 'checkout'}" class="btn btn-block btn-join-now mt-3 py-2 bg-warning">Join Now</router-link>
+                          <router-link :to="{name: 'Checkout'}" class="btn btn-block btn-join-now mt-3 py-2 bg-warning">Join Now</router-link>
                       </div>
                   </div>
               </div>
@@ -117,14 +119,34 @@ export default {
     navbarLancong,
     footerLancong
   },
+  data() {
+    return {
+      imageDefault : '',
+      details : []
+    }
+  },
+  methods: {
+    changeImage(image) {
+      this.imageDefault = image;
+    }
+  },
   mounted() {
+    this.$Progress.start();
     this.$store.dispatch('getDetail', {
         slug : this.$route.params.id,
     })
+    .then(() => {
+      this.imageDefault = this.$store.getters.imageDefault;
+      this.details = this.$store.getters.details;
+      this.$Progress.finish();
+    })
+  
 
 }
 }
 </script>
 <style>
-
+  .active-img {
+    border: 4px #D39E00 solid;
+  }
 </style>

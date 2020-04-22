@@ -52,7 +52,7 @@ const options = {
   transition: {
     speed: '0.2s',
     opacity: '0.6s',
-    termination: 300
+    termination: 1000
   },
   autoRevert: true,
   location: 'top',

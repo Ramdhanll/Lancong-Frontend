@@ -110,7 +110,7 @@
           <div
             class="section-popular-travel row justify-content-center match-height"
           >
-            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4">
+            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4" data-aos-duration="2000">
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content">
                   <img
@@ -128,7 +128,7 @@
                 <p class="trip-to mt-2">Trip to Ubud</p>
               </div>
             </div>
-            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4">
+            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4" data-aos-duration="2000">
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content">
                   <img
@@ -146,7 +146,7 @@
                 <p class="trip-to mt-2">Trip to Nusa Penida</p>
               </div>
             </div>
-            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4">
+            <div data-aos="flip-left" class="col-sm-6 col-md-6 col-lg-4" data-aos-duration="2000">
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content mb-auto">
                   <img

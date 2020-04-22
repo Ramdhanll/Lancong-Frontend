@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
     token: localStorage.getItem('access_token') || null,
     user : [],
     popular: [],
-    detail : []
+    details : []
   },
   getters: {
     loggedIn(state) {
@@ -18,6 +18,12 @@ export const store = new Vuex.Store({
     },
     getPupolar(state) {
       return state.popular;
+    },
+    imageDefault(state) {
+      return state.details.galleries[0].image;
+    },
+    details(state) {
+      return state.details;
     }
   },
   mutations: {
@@ -35,7 +41,7 @@ export const store = new Vuex.Store({
       state.popular = data;
     },
     getDetail(state, data) {
-      state.detail = data;
+      state.details = data;
     }
   },
   actions: {
@@ -103,14 +109,17 @@ export const store = new Vuex.Store({
         })
     },
     getDetail(context, slug) {
-      axios.get('/getDetail/' + slug.slug)
+      return new Promise((resolve, reject) => {
+        axios.get('/getDetail/' + slug.slug)
         .then(response => {
           const data = response.data;
           context.commit('getDetail', data);
+          resolve('success');
         })
-        .catch(response => {
-          console.log(response);
+        .catch(() => {
+          reject('failed');
         })
+      })
     }
 
   }
