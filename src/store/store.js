@@ -8,9 +8,11 @@ axios.defaults.baseURL = 'http://api.lancong.test/api'
 export const store = new Vuex.Store({
   state: {
     token: localStorage.getItem('access_token') || null,
-    user : [],
+    user : localStorage.getItem('user') || null,
     popular: [],
-    details : []
+    details : [],
+    checkout: [],
+    transaction_id: localStorage.getItem('transaction_id') || null,
   },
   getters: {
     loggedIn(state) {
@@ -24,6 +26,12 @@ export const store = new Vuex.Store({
     },
     details(state) {
       return state.details;
+    },
+    checkout(state) {
+      return state.checkout;
+    },
+    user(state) {
+      return state.user;
     }
   },
   mutations: {
@@ -42,6 +50,12 @@ export const store = new Vuex.Store({
     },
     getDetail(state, data) {
       state.details = data;
+    },
+    setTransaction(state, data) {
+      state.transaction_id = data;
+    },
+    getCheckout(state, data) {
+      state.checkout = data;
     }
   },
   actions: {
@@ -83,14 +97,14 @@ export const store = new Vuex.Store({
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
       axios.get('/user')
         .then((response) => {
-          context.commit('getUser', response.data)
+          localStorage.setItem('user', JSON.stringify(response.data));
+          context.commit('getUser', response.data);
         })
     },
     register(context, data) {
       return new Promise((resolve, reject) => {
         axios.post('/register', data)
           .then((response) => {
-            console.log(response);
             resolve(response);
           })
           .catch((e) => {
@@ -132,12 +146,30 @@ export const store = new Vuex.Store({
           id : id,
         })
           .then(response => {
+            context.commit('setTransaction', response.data.transaction_id);
+            localStorage.setItem('transaction_id', response.data.transaction_id);
             resolve(response);
           })
           .catch(error => {
             reject(error);
           });
       });
+    },
+    getCheckout(context) {
+      var transaction_id = context.state.transaction_id;
+      return new Promise((resolve,reject) => {
+        axios.post('/getCheckout', {
+          id: transaction_id
+        })
+          .then((response) => {
+            context.commit('getCheckout', response.data);
+            resolve(response);
+          })
+          .catch((response) => {
+            reject(response)
+            console.log(response)
+          })
+      })
     }
 
 

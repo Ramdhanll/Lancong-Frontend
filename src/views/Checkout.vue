@@ -61,21 +61,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                      <tr v-if="checkout < 0">
+                                        <td colspan="6">Kosong</td>
+                                      </tr>
+                                        <tr v-for="(item, index) in checkout.details" :key="index">
                                             <td>
-                                                <img src="images/passengers1.png" height="60px">
+                                                <img :src="'https://ui-avatars.com/api/?name=' + item.username + '}}'" 
+                                                height="60px" class="rounded-circle">
                                             </td>
                                             <td class="align-middle">
-                                                Ramadhani
+                                                {{ item.username }}
                                             </td>
                                             <td class="align-middle">
-                                                Singapura
+                                                {{ item.nationality }}
                                             </td>
                                             <td class="align-middle">
-                                                N/A
+                                                {{ item.is_visa ? '30 Days' : 'N/A'}}
                                             </td>
                                             <td class="align-middle">
-                                                Active
+                                              {{dateDetails(item.doe_passport) > dateNow ? 'Active' : 'In Active'}}
                                             </td>
                                             <td class="align-middle">
                                                 <a href="#">
@@ -83,29 +87,6 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <img src="images/passengers2.png" height="60px">
-                                            </td>
-                                            <td class="align-middle">
-                                                Sabrina Luna
-                                            </td>
-                                            <td class="align-middle">
-                                                England
-                                            </td>
-                                            <td class="align-middle">
-                                                30 Days
-                                            </td>
-                                            <td class="align-middle">
-                                                Active
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="#">
-                                                    <img src="images/icon-remove.png">
-                                                </a>
-                                            </td>
-                                        </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -233,6 +214,44 @@ export default {
   name:'detail',
   components: {
     footerLancong
+  },
+  data() {
+    return {
+      checkout: [],
+    }
+  },
+  methods: {
+    getCheckout() {
+      this.$store.dispatch('getCheckout')
+        .then(() => {
+          this.checkout = this.$store.getters.checkout();
+          this.a = this.$store.state.checkout;
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    },
+    dateDetails(date) {
+      return date.replace(/-/g,'');
+    }
+  },
+  computed: {
+    dateNow() {
+      var utc = new Date().toJSON().slice(0,10).replace(/-/g,'');
+      return utc;
+    }
+  },
+  mounted() {
+    // this.getCheckout();
+    this.$store.dispatch('getCheckout')
+      .then(() => {
+        this.checkout = this.$store.getters.checkout;
+        console.log(this.checkout);
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+      
   }
 }
 </script>

@@ -136,14 +136,12 @@ export default {
       this.$store.dispatch('setTransaction', {
         id : id
       })
-        .then((response) => {
-          console.log(response)
+        .then(() => {
           this.$Progress.finish();
           this.$router.push('/checkout');
         })
-        .catch((e) => {
+        .catch(() => {
           this.$Progress.fail();
-          console.log(e)
         })
     }
   },
