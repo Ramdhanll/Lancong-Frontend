@@ -74,7 +74,7 @@ const Toast = Swal.mixin({
 })
 
 Vue.prototype.$Toast = Toast;
-
+Vue.prototype.$Fire = new Vue();
 new Vue({
   created() {
     AOS.init();

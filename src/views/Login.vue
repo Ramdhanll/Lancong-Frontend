@@ -74,14 +74,13 @@ export default {
         email: this.email,
         password: this.password
       })
-      .then(response => {
+      .then(() => {
         this.$Progress.finish();
         this.$Toast.fire({
           icon: 'success',
           title: 'Sign in success'
         })
-        this.$router.push({name: 'Home'})
-        response
+        this.$router.push({name: 'Details'})
       })
       .catch(e => {
         this.$Progress.fail();

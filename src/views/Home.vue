@@ -8,6 +8,7 @@
         <br />
         As Easy One Click
       </h1>
+    
       <p>
         You will see beautiful
         <br />
@@ -54,13 +55,15 @@
         </div>
       </section>
       <section class="section-popular-content" id="popularContent">
-        <div class="container">
+        <div class="container" v-show="nyala">
           <div data-aos="fade-up" data-aos-duration="1000" class="section-popular-travel row justify-content-center">
-            <div class="col-sm-6 col-md-4 col-lg-3" v-for="(popular, index) in this.$store.state.popular" :key="index">
+            <div class="col-sm-6 col-md-4 col-lg-3" v-for="(popular, index) in populars" :key="index">
               <div
                 class="card-travel text-center d-flex flex-column"
                 v-bind:style="{ backgroundImage: 'url(http://api.lancong.test/images/galleries/' + popular.galleries[0].image + ')' }"
+
               >
+              
                 <div class="travel-country">{{ popular.location }}</div>
                 <div class="travel-location">{{ popular.title }}</div>
                 <div class="travel-button mt-auto">
@@ -132,7 +135,7 @@
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content">
                   <img
-                    src="images/avatar-2.png"
+                    src="/images/avatar-2.png"
                     alt=""
                     class="mb-4 rounded-circle"
                   />
@@ -150,7 +153,7 @@
               <div class="card card-testimonial text-center">
                 <div class="testimonial-content mb-auto">
                   <img
-                    src="images/avatar-3.png"
+                    src="/images/avatar-3.png"
                     alt=""
                     class="mb-4 rounded-circle"
                   />
@@ -194,17 +197,20 @@ export default {
   },
   data() {
     return {
+      populars : [],
+      nyala : false
     }
   },
-  computed: {
+  methods: {
     
   },
   mounted() {
     this.$store.dispatch('getPopular')
-      .then(response => {
-        console.log(response);
-      });
-
+      .then(() => {
+        this.nyala = true;
+        this.populars = this.$store.state.popular;
+      })
+      .catch((e) => console.log(e));
   },
   
 }

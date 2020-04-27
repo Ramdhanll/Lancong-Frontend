@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
       return state.popular;
     },
     imageDefault(state) {
-      return state.details.galleries[0].image;
+      return state.details.galleries[0].image || null;
     },
     details(state) {
       return state.details;
@@ -32,6 +32,9 @@ export const store = new Vuex.Store({
     },
     user(state) {
       return state.user;
+    },
+    countsMember(state) {
+      return state.checkout.details.length || null;
     }
   },
   mutations: {
@@ -113,14 +116,18 @@ export const store = new Vuex.Store({
       })
     },
     getPopular(context) {
-      axios.get('/getPopular')
+      return new Promise((resolve, reject) => {
+        axios.get('/getPopular')
         .then(response => {
           const data = response.data;
           context.commit('getPopular', data);
+          resolve(response);
         })
         .catch(response => {
           console.log(response);
+          reject(response);
         })
+      })
     },
     getDetail(context, slug) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
@@ -170,6 +177,32 @@ export const store = new Vuex.Store({
             console.log(response)
           })
       })
+    },
+    addMember(context, data) {
+      return new Promise((resolve, reject) => {
+        axios.post('/addMember', {
+          data:data
+        })
+          .then((response) => {
+            console.log(response)
+            resolve(response);
+          })
+          .catch(e => {
+            console.log(e)
+            reject(e);
+          });
+      })
+    },
+    removeMember(context, id) {
+      return new Promise((resolve, reject) => {
+        axios.delete('/removeMember/'+ id)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch(e => {
+            reject(e);
+          })
+      }) 
     }
 
 
